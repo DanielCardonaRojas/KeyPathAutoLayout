@@ -1,7 +1,11 @@
 # NSLayoutConstraint + KeyPath
 
 A very lightweight DSL for autolayout for your swift applications, exposed as a set of extension.
-Just copy and paste the contents of this file as NSLayoutConstraint+KeyPath.swift
+
+Don't want to include a dependency into your project? This implementation is under 200 LOC. So go ahead and copy paste the contents of [this](https://raw.githubusercontent.com/DanielCardonaRojas/KeyPathAutoLayout/master/KeypathAutolayout/Keypath%2BAutolayout.swift) file as NSLayoutConstraint+KeyPath.swift into your project.
+This implementation is under 200 LOC.
+
+Want to learn more First inspiration came from [this](https://www.objc.io/blog/2018/10/30/auto-layout-with-key-paths/) objc.io article 
 
 
 ## Examples

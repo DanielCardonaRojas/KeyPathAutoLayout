@@ -13,7 +13,7 @@
 		B90D5414237EF4100056E2AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90D5412237EF4100056E2AD /* Main.storyboard */; };
 		B90D5416237EF4110056E2AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B90D5415237EF4110056E2AD /* Assets.xcassets */; };
 		B90D5419237EF4110056E2AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90D5417237EF4110056E2AD /* LaunchScreen.storyboard */; };
-		B90D5421237EF4480056E2AD /* Keypath+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90D5420237EF4480056E2AD /* Keypath+Autolayout.swift */; };
+		B90D5421237EF4480056E2AD /* NSLayoutConstraint+KeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90D5420237EF4480056E2AD /* NSLayoutConstraint+KeyPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		B90D5415237EF4110056E2AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B90D5418237EF4110056E2AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B90D541A237EF4110056E2AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B90D5420237EF4480056E2AD /* Keypath+Autolayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keypath+Autolayout.swift"; sourceTree = "<group>"; };
+		B90D5420237EF4480056E2AD /* NSLayoutConstraint+KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+KeyPath.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				B90D5415237EF4110056E2AD /* Assets.xcassets */,
 				B90D5417237EF4110056E2AD /* LaunchScreen.storyboard */,
 				B90D541A237EF4110056E2AD /* Info.plist */,
-				B90D5420237EF4480056E2AD /* Keypath+Autolayout.swift */,
+				B90D5420237EF4480056E2AD /* NSLayoutConstraint+KeyPath.swift */,
 			);
 			path = KeypathAutolayout;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 				B90D5411237EF4100056E2AD /* ViewController.swift in Sources */,
 				B90D540D237EF4100056E2AD /* AppDelegate.swift in Sources */,
 				B90D540F237EF4100056E2AD /* SceneDelegate.swift in Sources */,
-				B90D5421237EF4480056E2AD /* Keypath+Autolayout.swift in Sources */,
+				B90D5421237EF4480056E2AD /* NSLayoutConstraint+KeyPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
