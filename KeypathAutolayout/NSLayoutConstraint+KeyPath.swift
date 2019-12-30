@@ -112,10 +112,17 @@ public class Constraint {
 }
 
 // MARK: - NSLayoutConstraint
+@_functionBuilder
+struct ConstraintBuilder {
+    static func buildBlock(_ configurations: [NSLayoutConstraint]...) -> [NSLayoutConstraint] {
+        return configurations.flatMap({ $0 })
+    }
+}
+
 extension NSLayoutConstraint {
 
-    public static func activating(_ constraints: [[NSLayoutConstraint]]) {
-        let cons = constraints.flatMap({ $0 })
+    public static func activate(@ConstraintBuilder _ content: () -> [NSLayoutConstraint]) {
+        let cons = content()
         NSLayoutConstraint.activate(cons)
     }
 
@@ -177,7 +184,7 @@ extension Constraint.Configuration {
     }
 
     public static func safeRight(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.safeRightAnchor, constant: margin)]
+        [.equal(\.safeRightAnchor, constant: -margin)]
     }
 
     public static func inset(by edgeInsets: UIEdgeInsets) -> [Constraint] {
@@ -259,3 +266,4 @@ extension UIView {
         return safeAreaLayoutGuide.rightAnchor
     }
 }
+

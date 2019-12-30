@@ -38,14 +38,14 @@ class ViewController: UIViewController {
 
         let equallySizedUnder = .equallySized() + .centerX() + .below(spacing: containerSpacing)
 
-        NSLayoutConstraint.activating([
-            example1Container.constrainedBy(.constantHeight(60)),
-            example1Container.relativeTo(view, positioned: fillHorizontal + .top(margin: 60)),
-            example2Container.relativeTo(example1Container, positioned: equallySizedUnder),
-            example3Container.relativeTo(example2Container, positioned: equallySizedUnder),
-            example4Container.relativeTo(example3Container, positioned: .below(spacing: containerSpacing) + .centerX()),
+        NSLayoutConstraint.activate {
+            example1Container.constrainedBy(.constantHeight(60))
+            example1Container.relativeTo(view, positioned: fillHorizontal + .top(margin: 60))
+            example2Container.relativeTo(example1Container, positioned: equallySizedUnder)
+            example3Container.relativeTo(example2Container, positioned: equallySizedUnder)
+            example4Container.relativeTo(example3Container, positioned: .below(spacing: containerSpacing) + .centerX())
             example4Container.constrainedBy(.constantWidth(70) + .constantHeight(200))
-        ])
+        }
 
         // Call examples
         exampleInset(container: example1Container)
@@ -92,12 +92,12 @@ class ViewController: UIViewController {
 
         let equallySizedUnder = .equallySized() + .centerX() + .below(spacing: 40)
 
-        NSLayoutConstraint.activating([
-            b1.relativeTo(container, positioned: .centerX() + .top(margin: 10)),
-            b1.constrainedBy(.constantHeight(30) + .aspectRatio(1.0)),
-            b2.relativeTo(b1, positioned: equallySizedUnder),
+        NSLayoutConstraint.activate {
+            b1.relativeTo(container, positioned: .centerX() + .top(margin: 10))
+            b1.constrainedBy(.constantHeight(30) + .aspectRatio(1.0))
+            b2.relativeTo(b1, positioned: equallySizedUnder)
             b3.relativeTo(b2, positioned: equallySizedUnder)
-        ])
+        }
     }
 
     func exampleCorners(container: UIView) {
@@ -107,10 +107,10 @@ class ViewController: UIViewController {
         container.addSubview(label1)
         container.addSubview(label2)
 
-        NSLayoutConstraint.activating([
-            label1.relativeTo(container, positioned: .top() + .left()),
+        NSLayoutConstraint.activate {
+            label1.relativeTo(container, positioned: .top() + .left())
             label2.relativeTo(container, positioned: .bottom() + .right(margin: 20))
-        ])
+        }
     }
 
 
@@ -118,9 +118,9 @@ class ViewController: UIViewController {
         let b1 = box(.red)
         container.addSubview(b1)
 
-        NSLayoutConstraint.activating([
-            b1.relativeTo(container, positioned: .inset(by: 7.0)),
-        ])
+        NSLayoutConstraint.activate {
+            b1.relativeTo(container, positioned: .inset(by: 7.0))
+        }
     }
 
     func exampleSibling(container: UIView) {
@@ -132,12 +132,12 @@ class ViewController: UIViewController {
         container.addSubview(leftBox)
         container.addSubview(rightBox)
 
-        NSLayoutConstraint.activating([
-            leftBox.relativeTo(centeredBox, positioned: .toLeft(spacing: 40) + .equallySized() + .centerY()),
-            centeredBox.relativeTo(container, positioned: .centered),
-            rightBox.relativeTo(centeredBox, positioned: .toRight(spacing: 50) + .equallySized() + .centerY()),
+        NSLayoutConstraint.activate {
+            leftBox.relativeTo(centeredBox, positioned: .toLeft(spacing: 40) + .equallySized() + .centerY())
+            centeredBox.relativeTo(container, positioned: .centered)
+            rightBox.relativeTo(centeredBox, positioned: .toRight(spacing: 50) + .equallySized() + .centerY())
             centeredBox.constrainedBy(.constantHeight(30) + .aspectRatio(1.0))
-        ])
+        }
     }
 }
 
