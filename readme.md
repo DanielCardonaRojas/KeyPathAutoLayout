@@ -3,7 +3,7 @@
 A lightweight DSL for autolayout for your cocoa applications. This AutoLayout API is power by keypaths behind the scenes.
 
 
-Don't want to include a dependency into your project? This implementation is under 200 LOC. So go ahead and copy paste the contents of [this](https://raw.githubusercontent.com/DanielCardonaRojas/KeyPathAutoLayout/master/KeypathAutolayout/NSLayoutConstraint%2BKeyPath.swift) file as NSLayoutConstraint+KeyPath.swift into your project.
+Don't want to include a dependency into your project? This implementation is under 200 LOC. So go ahead and copy paste the contents of [this](https://raw.githubusercontent.com/DanielCardonaRojas/KeyPathAutoLayout/master/Sources/KeypathAutoLayout/NSLayoutConstraint%2BKeyPath.swift) file as NSLayoutConstraint+KeyPath.swift into your project.
 This implementation is under 200 LOC.
 
 Want to learn more first inspiration came from [this](https://www.objc.io/blog/2018/10/30/auto-layout-with-key-paths/) objc.io article 
