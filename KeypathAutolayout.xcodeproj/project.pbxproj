@@ -40,7 +40,8 @@
 		B90D5400237EF4100056E2AD = {
 			isa = PBXGroup;
 			children = (
-				B90D540B237EF4100056E2AD /* KeypathAutolayout */,
+				B9C5E02E23C0C4A0007725DF /* Sources */,
+				B90D540B237EF4100056E2AD /* Examples */,
 				B90D540A237EF4100056E2AD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +54,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B90D540B237EF4100056E2AD /* KeypathAutolayout */ = {
+		B90D540B237EF4100056E2AD /* Examples */ = {
 			isa = PBXGroup;
 			children = (
 				B90D540C237EF4100056E2AD /* AppDelegate.swift */,
@@ -62,9 +63,24 @@
 				B90D5415237EF4110056E2AD /* Assets.xcassets */,
 				B90D5417237EF4110056E2AD /* LaunchScreen.storyboard */,
 				B90D541A237EF4110056E2AD /* Info.plist */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		B9C5E02E23C0C4A0007725DF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B9C5E02F23C0C4BB007725DF /* KeyPathAutoLayout */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B9C5E02F23C0C4BB007725DF /* KeyPathAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
 				B90D5420237EF4480056E2AD /* NSLayoutConstraint+KeyPath.swift */,
 			);
-			path = KeypathAutolayout;
+			path = KeyPathAutoLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -285,7 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = KeypathAutolayout/Info.plist;
+				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,7 +319,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = KeypathAutolayout/Info.plist;
+				INFOPLIST_FILE = Examples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
