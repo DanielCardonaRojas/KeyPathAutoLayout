@@ -1,2 +1,4 @@
 xcdebugger/
 .build/
+.xcuserdata/
+xcuserdata/

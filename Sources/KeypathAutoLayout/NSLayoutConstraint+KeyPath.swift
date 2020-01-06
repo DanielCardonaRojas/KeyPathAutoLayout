@@ -9,13 +9,13 @@
 import UIKit
 // MARK: - Applying Constraints
 extension UIView {
-    func relativeTo(_ view: UIView, positioned constraints: [Constraint], priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+    public func relativeTo(_ view: UIView, positioned constraints: [Constraint], priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
         let constraints = Constraint.resolveConstraints(self, view, constraints: constraints)
         constraints.forEach({ $0.priority = priority })
         return constraints
     }
 
-    func constrainedBy(_ constraints: [Constraint]) -> [NSLayoutConstraint] {
+    public func constrainedBy(_ constraints: [Constraint]) -> [NSLayoutConstraint] {
         return Constraint.resolveConstraints(self, self, constraints: constraints)
     }
 }
@@ -113,8 +113,8 @@ public class Constraint {
 
 // MARK: - NSLayoutConstraint
 @_functionBuilder
-struct ConstraintBuilder {
-    static func buildBlock(_ configurations: [NSLayoutConstraint]...) -> [NSLayoutConstraint] {
+public struct ConstraintBuilder {
+    public static func buildBlock(_ configurations: [NSLayoutConstraint]...) -> [NSLayoutConstraint] {
         return configurations.flatMap({ $0 })
     }
 }
