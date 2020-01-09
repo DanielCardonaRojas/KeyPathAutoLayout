@@ -125,6 +125,11 @@ extension NSLayoutConstraint {
         let cons = content()
         NSLayoutConstraint.activate(cons)
     }
+    
+    public static func activating(_ constraints: [[NSLayoutConstraint]]) {
+        let cons =  constraints.flatMap { $0 }
+        NSLayoutConstraint.activate(cons)
+    }
 
     static func adjust(from constraint: NSLayoutConstraint,
                        withMultiplier multiplier: CGFloat? = nil,

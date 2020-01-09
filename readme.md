@@ -16,8 +16,15 @@ Want to learn more first inspiration came from [this](https://www.objc.io/blog/2
 - Easy reuse, create a group of Constraints and reuse applying to any other 2 views.
 - Almost identical to what you've already been doing with programmatic constraints. (Will still need to addSubview and set autoRezisingMask to false)
 - Works with safe area layoutGuides.
-- Uses function builder syntax (same that powers declarative SwiftUI)
+- Available function builder syntax ( there are some issues related to this in some Xcode versions read the notes below.)
 
+
+> Note: Functions builder syntax might not work correctly on some Xcode 11 versions due to a compiler bug
+
+>  https://bugs.swift.org/browse/SR-11888 so for now use swift compiler version shipped with 11.0 or switch toolchains by downloading 
+> from https://swift.org/download/#snapshots
+
+> To aliviate this an alternative syntax with a regular array is still available.
 
 
 ## Examples
