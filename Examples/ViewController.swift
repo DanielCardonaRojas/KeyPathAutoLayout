@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         let example2Container = container(name: "Ex2")
         let example3Container = container(name: "Ex3")
         let example4Container = container(name: "Ex4")
+        let example5Container = container(name: "Ex5")
         let containerSpacing: CGFloat = 40
 
         view.addSubview(example1Container)
@@ -41,9 +42,8 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate {
             example1Container.constrainedBy(.constantHeight(60))
             example1Container.relativeTo(view, positioned: fillHorizontal + .top(margin: 60))
-            example2Container.relativeTo(example1Container, positioned: equallySizedUnder)
-            example3Container.relativeTo(example2Container, positioned: equallySizedUnder)
-            example4Container.relativeTo(example3Container, positioned: .below(spacing: containerSpacing) + .centerX())
+            [example1Container, example2Container, example3Container].column(crossAxis: .centerX() + .width(), spacing: 40)
+            example4Container.relativeTo(example3Container, positioned: .below(spacing: 20))
             example4Container.constrainedBy(.constantWidth(70) + .constantHeight(200))
         }
 
@@ -94,9 +94,7 @@ class ViewController: UIViewController {
 
         NSLayoutConstraint.activate {
             b1.relativeTo(container, positioned: .centerX() + .top(margin: 10))
-            b1.constrainedBy(.constantHeight(30) + .aspectRatio(1.0))
-            b2.relativeTo(b1, positioned: equallySizedUnder)
-            b3.relativeTo(b2, positioned: equallySizedUnder)
+            [b1, b2, b3].column(crossAxis: .centerX() + .width(), spacing: 10, mainAxis: .height())
         }
     }
 

@@ -78,3 +78,15 @@ NSLayoutConstraint.activate {
 }
 
 ```
+
+**Rows and columns**
+
+There is also built in helpers to create row and column layouts, more concisely like this:
+
+![](vertical_stacking.png)
+```swift
+NSLayoutConstraint.activate {
+    b1.relativeTo(container, positioned: .centerX() + .top(margin: 10))
+    [b1, b2, b3].column(crossAxis: .centerX() + .width(), spacing: 10, mainAxis: .height())
+}
+```
