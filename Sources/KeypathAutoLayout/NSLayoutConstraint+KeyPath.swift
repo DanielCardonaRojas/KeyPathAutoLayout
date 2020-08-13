@@ -10,6 +10,18 @@ import UIKit
 
 // MARK: - Applying Constraints
 extension UIView {
+    /**
+     Position caller relative to some other UIView using Autolayout.
+
+     Typical usage of this method is done in combination  with  NSLayoutConstraint.activating  function
+     which has an array, and function builder variants.
+
+     - Parameter view: View reference to which layout rules will be applied relative to caller
+     - Parameter relation: One of: `.equal, .greaterThanOrEqual, .lessThanOrEqual`
+     - Parameter positioned: The set of layout rules to be applied.
+     - Parameter priority: UILayoutPriority to be  used, defaults to `.required`
+
+     */
     public func relativeTo(
         _ view: UIView, positioned constraints: [Constraint],
         relation: Constraint.Relation = .equal, priority: UILayoutPriority = .required
@@ -20,6 +32,18 @@ extension UIView {
         return constraints
     }
 
+    /**
+     Adds dimension rendering rules to caller using Autolayout.
+
+     Typical usage of this method is done in combination  with  NSLayoutConstraint.activating  function
+     which has an array, and function builder variants.
+
+
+     - Parameter relation: One of: `.equal, .greaterThanOrEqual, .lessThanOrEqual`
+     - Parameter constraints: Un paired constraints.
+     - Parameter priority: UILayoutPriority to be  used, defaults to `.required`
+
+     */
     public func constrainedBy(
         _ constraints: [Constraint], relation: Constraint.Relation = .equal,
         priority: UILayoutPriority = .required
@@ -54,6 +78,7 @@ extension Array where Element: UIView {
      Create constraints to space items in a column
 
      - Parameter crossAxis: The cross axis aligment used, e.g .centerX() + .width(), .left(), .right()
+     - Parameter mainAxis: Main axis constraint rules
      - Returns: A list of constraints ready to be activated
 
 
@@ -106,11 +131,18 @@ extension Constraint.Configuration {
 }
 
 // MARK: - Constraint
+/// An abstraction of NSLayoutConstraint, allowing reuse and easier composition
+///
+/// Constraint class builds around a function of type:
+/// `(UIView, UIView, Relation) -> NSLayoutConstraint`
+/// To enable easier composition of layout rules
 public class Constraint {
+    /// Spatial relation type
     public enum Relation {
         case equal, greaterThanOrEqual, lessThanOrEqual
     }
 
+    /// Underlying function type  used to build NSLayoutConstraints
     typealias ConstraintBuilder = (UIView, UIView, Relation) -> NSLayoutConstraint
 
     public typealias Configuration = [Constraint]
@@ -147,6 +179,15 @@ public class Constraint {
         return layoutConstraints
     }
 
+    /**
+     Creates a constraint that relates layout position or dimension between two UIViews
+
+     - Parameter keyPath: Layout anchor point of first view
+     - Parameter otherKeyPath: Layout anchor point of second view
+     - Parameter constant: Value used to offset the value of the first anchor in relation to second anchor
+     - Parameter multiplier: Value used to scale the value of the first anchor in relation to second anchor
+
+     */
     public static func paired<Anchor, AnchorType>(
         _ keyPath: KeyPath<UIView, Anchor>,
         _ otherKeyPath: KeyPath<UIView, Anchor>? = nil,
@@ -181,6 +222,15 @@ public class Constraint {
 
     }
 
+    /**
+     Creates a constraint on View that does not require any other view reference point.
+
+     - Parameter keyPath: Layout anchor point of first view
+     - Parameter constant: Value used to offset the value of the first anchor in relation to second anchor
+     - Parameter multiplier: Value used to scale the value of the first anchor in relation to second anchor
+     - Parameter priority: UILayoutPriority used for this  constraint or nil
+
+     */
     public static func unpaired<Anchor>(
         _ keyPath: KeyPath<UIView, Anchor>,
         constant: CGFloat = 0,
@@ -206,22 +256,6 @@ public class Constraint {
                 withMultiplier: multiplier,
                 priority: priority)
         }
-    }
-
-    public static func equal<L, Axis>(_ to: KeyPath<UIView, L>, constant: CGFloat = 0.0)
-        -> Constraint where L: NSLayoutAnchor<Axis>
-    {
-        return paired(
-            to, constant: constant, multiplier: nil, priority: nil)
-    }
-
-    public static func equal<L>(
-        _ from: KeyPath<UIView, L>, _ to: KeyPath<UIView, L>, constant: CGFloat = 0,
-        multiplier: CGFloat? = nil
-    ) -> Constraint where L: NSLayoutDimension {
-        return paired(
-            from, to, constant: constant, multiplier: multiplier,
-            priority: nil)
     }
 }
 
@@ -278,49 +312,49 @@ extension Constraint.Configuration {
     }
 
     public static func top(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.topAnchor, constant: margin)]
+        [.paired(\.topAnchor, constant: margin)]
     }
 
     public static func bottom(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.bottomAnchor, constant: -margin)]
+        [.paired(\.bottomAnchor, constant: -margin)]
     }
 
     public static func left(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.leftAnchor, constant: margin)]
+        [.paired(\.leftAnchor, constant: margin)]
     }
 
     public static func right(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.rightAnchor, constant: -margin)]
+        [.paired(\.rightAnchor, constant: -margin)]
     }
 
     // MARK: Safe Layout guide
     public static func safeTop(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.safeTopAnchor, constant: margin)]
+        [.paired(\.safeTopAnchor, constant: margin)]
     }
 
     public static func safeBottom(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.safeBottomAnchor, constant: -margin)]
+        [.paired(\.safeBottomAnchor, constant: -margin)]
     }
 
     public static func safeLeft(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.safeLeftAnchor, constant: margin)]
+        [.paired(\.safeLeftAnchor, constant: margin)]
     }
 
     public static func safeRight(margin: CGFloat = 0) -> [Constraint] {
-        [.equal(\.safeRightAnchor, constant: -margin)]
+        [.paired(\.safeRightAnchor, constant: -margin)]
     }
 
     public static func inset(by edgeInsets: UIEdgeInsets) -> [Constraint] {
         [
-            .equal(\.topAnchor, constant: edgeInsets.top),
-            .equal(\.rightAnchor, constant: -abs(edgeInsets.right)),
-            .equal(\.leftAnchor, constant: abs(edgeInsets.left)),
-            .equal(\.bottomAnchor, constant: -abs(edgeInsets.bottom)),
+            .paired(\.topAnchor, constant: edgeInsets.top),
+            .paired(\.rightAnchor, constant: -abs(edgeInsets.right)),
+            .paired(\.leftAnchor, constant: abs(edgeInsets.left)),
+            .paired(\.bottomAnchor, constant: -abs(edgeInsets.bottom)),
         ]
     }
 
     public static var centered: [Constraint] {
-        [.equal(\.centerYAnchor), .equal(\.centerXAnchor)]
+        [.paired(\.centerYAnchor), .paired(\.centerXAnchor)]
     }
 
     // MARK: Siblings
@@ -345,15 +379,15 @@ extension Constraint.Configuration {
     }
 
     public static func centerY(offset: CGFloat = 0) -> [Constraint] {
-        [.equal(\.centerYAnchor, constant: offset)]
+        [.paired(\.centerYAnchor, constant: offset)]
     }
 
     public static func centerX(offset: CGFloat = 0) -> [Constraint] {
-        [.equal(\.centerXAnchor, constant: offset)]
+        [.paired(\.centerXAnchor, constant: offset)]
     }
 
     public static func equallySized() -> [Constraint] {
-        [.equal(\.widthAnchor), .equal(\.heightAnchor)]
+        [.paired(\.widthAnchor), .paired(\.heightAnchor)]
     }
 
     public static func height(constant: CGFloat = 0, multiplier: CGFloat = 1) -> [Constraint] {
@@ -375,7 +409,7 @@ extension Constraint.Configuration {
     }
 
     public static func aspectRatio(_ ratio: CGFloat) -> [Constraint] {
-        [.equal(\.heightAnchor, \.widthAnchor, constant: 0, multiplier: ratio)]
+        [.paired(\.heightAnchor, \.widthAnchor, constant: 0, multiplier: ratio)]
     }
 }
 
